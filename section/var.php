@@ -111,3 +111,7 @@ function send_gmail2($isHTML, $Subject, $Body, $to){
 
     $mail->Send();
 };
+
+function show_message($msg){
+    return "<b>".$msg."</b>";
+};

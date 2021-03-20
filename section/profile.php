@@ -19,6 +19,7 @@ include "var.php";
 $_SESSION["instagram"] = str_replace("@", "", $_SESSION["instagram"]);
 $row = db_select_spicific($_SESSION["gmail"]);
 $_SESSION["phone"] = $row[5];
+$_SESSION["matricule"] = $row[11];
     if ($row[9] == "0000-00-00"){
         $_SESSION["birthday"] = "Not defined <a href='settings.php'>Add your birthday?</a>";
     };
@@ -37,6 +38,9 @@ $_SESSION["phone"] = $row[5];
     };
     if ($row[10] == ""){
         $_SESSION["gender"] = "Not defined <a href='settings.php'>Add your gender?</a>";
+    };
+    if ($row[11] == ""){
+        $_SESSION["matricule"] = "Not defined <a href='settings.php'>Add your matricule?</a>";
     };
 ?>
 <body class="container">
@@ -60,6 +64,8 @@ $_SESSION["phone"] = $row[5];
             <b><?="Group: ".$_SESSION["group"] ?></b>
             <br>
             <b id="birthday"><?="Birthday: ".$_SESSION["birthday"] ?></b>
+            <br>
+            <b id="matricule"><?="Matricule: ".$_SESSION["matricule"] ?></b>
         </div>
 
         <div class="col-sm-7 more">

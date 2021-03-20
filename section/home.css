@@ -1,0 +1,78 @@
+.content{
+    text-align: center;
+    margin-top: 85px;
+}
+
+.pages{
+    position: absolute;
+    background-color: black;
+    color: white;
+    width: 85%;
+    height: 40px;
+}
+
+.menu{
+    position: absolute;
+    background-color: wheat;
+    color: black;
+    width: 85%;
+    height: 40px;
+    margin-top: 40px;
+    padding-top: 5px;
+}
+
+.menu input{
+    border: none;
+}
+
+.menu input:focus{
+    outline: none;
+}
+
+.pages a{
+    font-size: larger;
+    margin-top: 9px;
+}
+
+.pages a:link {
+    color: white;
+}
+
+.pages a:visited {
+    color: wheat;
+}
+
+.pages a:hover {
+    color: rgb(94, 255, 0);
+}
+
+.pages a:active  {
+    color: red;
+}
+
+#msg{
+    text-align: center;
+}
+
+.foryou{
+    border: 2px solid black;
+    border-radius: 15px;
+    height: 550px;
+    position: absolute;
+    margin-left: 51%;
+    width: 470px;
+}
+
+.posts{
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.upload{
+    position: absolute;
+    margin-top: 25%;
+}
+
+.foryou b{
+    border-bottom: 2px solid black;
+};

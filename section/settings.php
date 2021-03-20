@@ -13,34 +13,48 @@
 </head>
 <?php
 include "var.php";
+$msg = "";
 session_start();
 $row = db_select_spicific($_SESSION["gmail"]);
 if (isset($_POST["submit1"])){
     db_update("first", $_POST["first"], $_SESSION["gmail"]);
+    $msg = show_message("Updated succesfully!");
 };
 if (isset($_POST["submit2"])){
     db_update("last", $_POST["last"], $_SESSION["gmail"]);
+    $msg = show_message("Updated succesfully!");
 };
 if (isset($_POST["submit3"])){
     db_update("password", $_POST["password"], $_SESSION["gmail"]);
+    $msg = show_message("Updated succesfully!");
 };
 if (isset($_POST["submit4"])){
     db_update("phone", $_POST["number"], $_SESSION["gmail"]);
+    $msg = show_message("Updated succesfully!");
 };
 if (isset($_POST["submit5"])){
     db_update("fb", $_POST["fb"], $_SESSION["gmail"]);
+    $msg = show_message("Updated succesfully!");
 };
 if (isset($_POST["submit6"])){
     db_update("instagram", $_POST["instagram"], $_SESSION["gmail"]);
+    $msg = show_message("Updated succesfully!");
 };
 if (isset($_POST["submit7"])){
     db_update("grp", $_POST["group"], $_SESSION["gmail"]);
+    $msg = show_message("Updated succesfully!");
 };
 if (isset($_POST["submit8"])){
     db_update("gender", $_POST["gender"], $_SESSION["gmail"]);
+    $msg = show_message("Updated succesfully!");
 };
 if (isset($_POST["submit9"])){
     db_update("birthday", $_POST["birthday"], $_SESSION["gmail"]);
+    $msg = show_message("Updated succesfully!");
+};
+if (isset($_POST["submit10"])){
+    db_update("matricule", $_POST["matricule"], $_SESSION["gmail"]);
+    $msg = show_message("Updated succesfully!");
 };
 ?>
 <body class="container">
@@ -104,9 +118,14 @@ if (isset($_POST["submit9"])){
             <input name="birthday" type="date" required>
             <input name="submit9" type="submit" value="Save">
         </form>
+        <form action="settings.php" method="POST" class="">
+            <label for="matricule">Your matricule: <?= $row[11]?></label>
+            <input name="matricule" type="text" minlength="4" maxlength="12" required>
+            <input name="submit10" type="submit" value="Save">
+        </form>
         <p>You have to re login in order for the changes to appear!</p>
     </div>
     </div>
-
+    <div id="msg"><?= $msg ?></div>
 </body>
 </html>

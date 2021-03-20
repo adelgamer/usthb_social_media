@@ -33,4 +33,8 @@
 
 .pages a:active  {
     color: red;
+}
+
+#msg{
+    text-align: center;
 };
