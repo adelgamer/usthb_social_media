@@ -1,0 +1,49 @@
+.basic{
+    border: 2px solid black;
+    border-right: 2px dotted rgb(0, 156, 247);
+    border-radius: 15px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.more{
+    border: 2px solid black;
+    border-left: 2px dotted rgb(0, 156, 247);
+    border-radius: 15px;
+    padding-bottom: 50px;
+    text-align: center;
+    height: 536px;
+}
+
+.pages{
+    position: absolute;
+    background-color: black;
+    color: white;
+    width: 85%;
+    height: 40px;
+}
+
+.content{
+    margin-top: 45px;
+}
+
+.pages a{
+    font-size: larger;
+    margin-top: 9px;
+}
+
+.pages a:link {
+    color: white;
+}
+
+.pages a:visited {
+    color: wheat;
+}
+
+.pages a:hover {
+    color: rgb(94, 255, 0);
+}
+
+.pages a:active  {
+    color: red;
+};

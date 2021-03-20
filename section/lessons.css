@@ -1,0 +1,97 @@
+.content{
+    /*border: 2px solid black;*/
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 45px;
+    padding-bottom: 25px;
+}
+
+.pages{
+    position: absolute;
+    background-color: black;
+    color: white;
+    width: 85%;
+    height: 40px;
+}
+
+.pages a{
+    font-size: larger;
+    margin-top: 9px;
+}
+
+.pages a:link {
+    color: white;
+}
+
+.pages a:visited {
+    color: wheat;
+}
+
+.pages a:hover {
+    color: rgb(94, 255, 0);
+}
+
+.pages a:active  {
+    color: red;
+}
+
+
+.content a{
+    font-size: 70px;
+    margin-top: 9px;
+}
+
+.content a:link {
+    color: black;
+}
+
+.content a:visited {
+    color: red;
+}
+
+.content a:hover {
+    color: rgb(94, 255, 0);
+}
+
+.content a:active  {
+    color: blue;
+}
+
+#a1{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#a2{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#a3{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#a4{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#a5{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#a6{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#a7{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+#a8{
+    border: 2px solid black;
+    border-radius: 5px;
+}
