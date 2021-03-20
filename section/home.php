@@ -57,7 +57,8 @@ if ($show == ""){$show = "There is nothing for you!";};
             <?php
             global $list, $count;
             for ($x=0; $x<$count; $x++){
-                echo "<b>".$list[$x]."</b><br>";
+                $to_show = str_replace("\n","<br>", $list[$x]);
+                echo "<b>".$to_show."</b><br><br>";
             };
             ?>
         </div>
