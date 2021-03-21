@@ -115,3 +115,13 @@ function send_gmail2($isHTML, $Subject, $Body, $to){
 function show_message($msg){
     return "<b>".$msg."</b>";
 };
+
+function filter_for_you($x,$list){
+        $element = explode(";", $list[$x]);
+        $groups = $element[1];
+        $user_group = db_select_spicific($_SESSION["gmail"])[8];
+        if (strpos($groups, $user_group) !== false){
+            $to_show = "<div class='borders'><b><u>" . $element[2] . "</u></b><p>" . str_replace("\n", "<br>", $element[3]) . "</p></div>";
+            return $to_show;
+        };
+};

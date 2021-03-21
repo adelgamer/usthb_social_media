@@ -13,6 +13,7 @@
 </head>
 <?php
 session_start();
+include "var.php";
 $posts = scandir("post/");
 $post_number = sizeof($posts);
 $show = "";
@@ -57,8 +58,7 @@ if ($show == ""){$show = "There is nothing for you!";};
             <?php
             global $list, $count;
             for ($x=0; $x<$count; $x++){
-                $to_show = str_replace("\n","<br>", $list[$x]);
-                echo "<b>".$to_show."</b><br><br>";
+                echo filter_for_you($x,$list);
             };
             ?>
         </div>

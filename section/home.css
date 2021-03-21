@@ -61,6 +61,7 @@
     position: absolute;
     margin-left: 51%;
     width: 470px;
+    overflow-y: scroll;
 }
 
 .posts{
@@ -73,6 +74,7 @@
     margin-top: 25%;
 }
 
-.foryou b{
-    outline: 2px solid black;
+.borders{
+    border: 2px solid black;
+    border-radius: 30px;
 };
