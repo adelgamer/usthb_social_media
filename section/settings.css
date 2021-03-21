@@ -1,0 +1,40 @@
+.settings{
+    border: 2px solid black;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 45px;
+    padding-bottom: 25px;
+}
+
+.pages{
+    position: absolute;
+    background-color: black;
+    color: white;
+    width: 85%;
+    height: 40px;
+}
+
+.pages a{
+    font-size: larger;
+    margin-top: 9px;
+}
+
+.pages a:link {
+    color: white;
+}
+
+.pages a:visited {
+    color: wheat;
+}
+
+.pages a:hover {
+    color: rgb(94, 255, 0);
+}
+
+.pages a:active  {
+    color: red;
+}
+
+#msg{
+    text-align: center;
+};
