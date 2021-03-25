@@ -42,11 +42,17 @@ $_SESSION["matricule"] = $row[11];
     if ($row[11] == ""){
         $_SESSION["matricule"] = "Not defined <a href='settings.php'>Add your matricule?</a>";
     };
+
+    if (vip($_SESSION["gmail"])){
+        $event = "<b><a href='event.php'>Add event?</a></b>";
+    }else{
+        $event = "";
+    };
 ?>
 <body class="container">
     <div class="row pages">
         <a class="col-sm-4" href="home.php">Home</a>
-        <a class="col-sm-2" href="profile.php">Profile</a>
+        <a class="col-sm-2" href="profile.php"><?= $_SESSION["first"]." ".$_SESSION["last"]?></a>
         <a class="col-sm-2" href="lessons.php">Lessons</a>
         <a class="col-sm-2" href="settings.php">Settings</a>
         <a class="col-sm-2" href="index.php">Log out</a>
@@ -83,6 +89,8 @@ $_SESSION["matricule"] = $row[11];
             <b>Instagram: </b>
             <b><?= $instagram?></b>
             <br>
+            <br>
+            <div class="event"><?= $event?></div>
         </div>
     </div>
 </body>

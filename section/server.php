@@ -15,7 +15,8 @@ while (true){
             if (!str_contains($gmails ,  strtolower($row["gmail"]) and str_contains($post_group, $row["grp"]))){
                 send_gmail2(true, "For you !", post_content($x), $row["gmail"]);
                 add_sent_gmail($x, $row["gmail"]);
-            };};
+            };
+        };
         };
     };
     sleep(1800);

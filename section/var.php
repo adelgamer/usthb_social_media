@@ -34,6 +34,18 @@ function db_select_spicific($gmail)
     return $list;
 };
 
+function db_select_spicific2($username2)
+{
+    //This function returns all the records of MySql
+    global $servername, $username, $password, $database;
+    $username = "root";
+    $link =  mysqli_connect($servername, $username, $password, $database);
+    $sql = "SELECT * FROM users WHERE username='$username2';";
+    $result = mysqli_query($link, $sql);
+    $list = $result->fetch_row();
+    return $list;
+};
+
 function db_insert()
 {
     //This function insert a record into the users table
@@ -128,10 +140,25 @@ function filter_for_you($x, $list)
     $element = explode(";", $list[$x]);
     $groups = $element[1];
     $user_group = db_select_spicific($_SESSION["gmail"])[8];
-    if (strpos($groups, $user_group) !== false) {
+
+    $post_date = $element[2];
+    $today_date = date("Y-m-d");
+
+    if (strpos($groups, $user_group) !== false and strtotime($post_date) >= strtotime($today_date)) {
         $to_show = "<div class='borders'><b><u>" . $element[2] . "</u></b><p>" . str_replace("\n", "<br>", $element[3]) . "</p></div>";
         return $to_show;
     };
+};
+
+function filter_user_post($x, $list)
+{
+    $element = explode(";", $list[$x]);
+    $user_name = $element[0];
+    $user_username = $element[1];
+    $user_date = $element[2];
+    $user_content = $element[3];
+    $to_show = "<div class='user-post'><b><a href='user-profile.php?id=$user_username'>" . $user_name . "</a></b><time>$user_date</time><p>" . str_replace("\n", "<br>", $user_content) . "</p></div>";
+    return $to_show;
 };
 
 function gmail_sent_to($x)
@@ -197,4 +224,40 @@ function vip($gmail)
     } else {
         return "error";
     };
+};
+
+
+function save_foryou_post()
+{
+    $all_posts = scandir("post");
+    $last_post_name = end($all_posts);
+    $last_post_number = preg_replace('/[^0-9]/', '', $last_post_name);
+    $new_number = $last_post_number + 1;
+    $dir = "post/foryou." . $new_number . ".txt";
+    $file = fopen($dir, "w");
+    $name = $_SESSION["first"] . " " . $_SESSION["last"] . ";\n";
+    $groups = $_SESSION["group1"] . "," . $_SESSION["group2"] . "," . $_SESSION["group3"] . "," . $_SESSION["group4"] . ";\n";
+    $date = $_SESSION["date"] . ";\n";
+    $content = $_SESSION["content"] . ";\n";
+    $text = $name . $groups . $date . $content;
+    fwrite($file, $text);
+    fclose($file);
+};
+
+function save_userpost()
+{
+    $all_posts = scandir("post2");
+    $last_post_name = end($all_posts);
+    $last_post_number = preg_replace('/[^0-9]/', '', $last_post_name);
+    $new_number = $last_post_number + 1;
+    $dir = "post2/post." . $new_number . ".txt";
+    $name = $_SESSION["first"] . " " . $_SESSION["last"] . ";\n";
+    $poster_username = $_SESSION["username"] . ";\n";
+    $user_date = date("Y-M-d") . ";\n";
+    $content = $_SESSION["post-content"] . ";\n";
+    $text = $name . $poster_username . $user_date . $content;
+    $file = fopen($dir, "w");
+    fwrite($file, $text);
+    fclose($file);
+    header("Location: home.php");
 };

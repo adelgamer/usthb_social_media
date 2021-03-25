@@ -4,7 +4,7 @@
 }
 
 .pages{
-    position: absolute;
+    position: fixed;
     background-color: black;
     color: white;
     width: 85%;
@@ -12,7 +12,7 @@
 }
 
 .menu{
-    position: absolute;
+    position: fixed;
     background-color: wheat;
     color: black;
     width: 85%;
@@ -58,7 +58,7 @@
     border: 2px solid black;
     border-radius: 15px;
     height: 550px;
-    position: absolute;
+    position: fixed;
     margin-left: 51%;
     width: 470px;
     overflow-y: scroll;
@@ -67,14 +67,22 @@
 .posts{
     border-right: 2px solid black;
     border-left: 2px solid black;
+    overflow-y: scroll;
+    height: 400px;
 }
 
 .upload{
-    position: absolute;
-    margin-top: 25%;
+    position: fixed;
+    /* margin-top: 25%; */
 }
 
 .borders{
     border: 2px solid black;
     border-radius: 30px;
-};
+}
+
+.user-post{
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-bottom: 1px;
+}

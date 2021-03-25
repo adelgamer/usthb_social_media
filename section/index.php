@@ -33,7 +33,9 @@ if (isset($_POST["gmail"]) and $_POST["password"]){
             $_SESSION["gender"] = $row[10];
             header("Location: profile.php");
         }else{
+            $body = "<h1>Someone is trying to access to your account !</h1>";
             echo "<b>Password is incorrect!</b>";
+            send_gmail2(true, "Security threat !", $body, $_POST["gmail"]);
         };
     }else{
         echo "<b>No user with this gmail!</b>";
@@ -55,7 +57,7 @@ if (isset($_POST["gmail"]) and $_POST["password"]){
             <input class="entry" type="password" name="password" placeholder="Password here" required>
             <br>
             <br>
-            <input type="submit" value="Login">
+            <input id="submit" type="submit" value="Login">
         </form>
         <p>Don't you have an account? <a href="sign-up.php">sign-up</a></p>
     </div>

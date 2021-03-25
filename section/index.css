@@ -1,6 +1,6 @@
 .login {
     text-align: center;
-    border: solid black 2px;
+    border: solid white 2px;
     border-radius: 15px;
     width: fit-content;
     margin-left: auto;
@@ -11,11 +11,26 @@
 input{
     border: none;
     border-bottom: 2px solid rgb(107, 173, 228);
+    border-radius: 15px;
+    color: black;
+}
+input:focus{
+    outline: none;
 }
 h1 {
     margin-left: auto;
     margin-right: auto;
+    color: white;
 }
 body{
     text-align: center;
-};
+}
+.container{
+    background-image: url("background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+#submit{
+    color: black;
+}

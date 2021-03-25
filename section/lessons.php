@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="lessons.css">
     <title>Lessons</title>
 </head>
+<?php session_start();?>
 <body class="container">
 <div class="row pages">
         <a class="col-sm-4" href="home.php">Home</a>
-        <a class="col-sm-2" href="profile.php">Profile</a>
+        <a class="col-sm-2" href="profile.php"><?= $_SESSION["first"]." ".$_SESSION["last"]?></a>
         <a class="col-sm-2" href="lessons.php">Lessons</a>
         <a class="col-sm-2" href="settings.php">Settings</a>
         <a class="col-sm-2" href="index.php">Log out</a>
