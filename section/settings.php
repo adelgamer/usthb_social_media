@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="school.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -15,6 +16,11 @@
 include "var.php";
 $msg = "";
 session_start();
+
+if (!isset($_SESSION["is-logged"])){
+    header("Location: index.php");
+};
+
 $row = db_select_spicific($_SESSION["gmail"]);
 if (isset($_POST["submit1"])){
     db_update("first", $_POST["first"], $_SESSION["gmail"]);
@@ -92,7 +98,7 @@ if (isset($_POST["submit10"])){
         </form>
         <form action="settings.php" method="POST" class="">
             <label for="fb">Your facebook link: <?= $row[6]?></label>
-            <input name="fb" type="text" required>
+            <input name="fb" type="url" required>
             <input name="submit5" type="submit" value="Save">
         </form>
         <form action="settings.php" method="POST" class="">

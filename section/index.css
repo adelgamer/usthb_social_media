@@ -16,6 +16,11 @@ input{
 }
 input:focus{
     outline: none;
+    color: black;
+}
+input{
+    outline: none;
+    color: black;
 }
 h1 {
     margin-left: auto;

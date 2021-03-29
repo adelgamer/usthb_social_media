@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign-up</title>
+    <link rel="icon" href="school.png">
     <link rel="stylesheet" href="sign-up3.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -33,7 +34,7 @@ if (isset($_POST["phone"]) and isset($_POST["fb"]) and isset($_POST["instagram"]
             <br>
             <label class="col-sm-12" for="fb">Enter your facebook link: </label>
             <br>
-            <input class="col-sm-12" type="text" name="fb" placeholder="fb link here">
+            <input class="col-sm-12" type="url" name="fb" placeholder="fb link here">
             <br>
             <label class="col-sm-12" for="instagram">Enter your instagram username: </label>
             <br>

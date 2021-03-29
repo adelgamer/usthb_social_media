@@ -16,6 +16,11 @@
 <?php
 session_start();
 include "var.php";
+
+if (!isset($_SESSION["is-logged"])){
+    header("Location: index.php");
+};
+
 $_SESSION["instagram"] = str_replace("@", "", $_SESSION["instagram"]);
 $row = db_select_spicific($_SESSION["gmail"]);
 $_SESSION["phone"] = $row[5];

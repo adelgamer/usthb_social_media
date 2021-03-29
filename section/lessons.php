@@ -5,13 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="school.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="lessons.css">
     <title>Lessons</title>
 </head>
-<?php session_start();?>
+<?php session_start();
+if (!isset($_SESSION["is-logged"])){
+    header("Location: index.php");
+};
+?>
 <body class="container">
 <div class="row pages">
         <a class="col-sm-4" href="home.php">Home</a>

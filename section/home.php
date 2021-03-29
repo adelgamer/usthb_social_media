@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="school.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -14,29 +15,77 @@
     <title>Home</title>
 </head>
 <?php
+//Starting session
 session_start();
+
+//Importing the file that has almost all the functions written on it var.php
 include "var.php";
+
+//checking if the user is logged in, if not he will be redirected to index.php
+if (!isset($_SESSION["is-logged"])){
+    header("Location: index.php");
+};
+
+//Sorting all the names of the foryou post files in $posts array
 $posts = scandir("post/");
+
+//The number of posts
 $post_number = sizeof($posts);
+
+//Initialise the var that is going to hold the post value
 $show = "";
-global $list, $count;
+
+//The array that's gonna hold the foryou post that's gonna be shown
 $list = array();
+
+
 for ($x = 0; $x < $post_number; $x++) {
-    $post_name = $posts[$x];
+    $post_name = $posts[$x]; //Holds the value of the post name it's from posts array which holds all post names
+
+    //this if statement checks if the $post_name contains 'foryou' if it doesn't that means it's not a foryou post
     if (strpos($post_name, "foryou") !== false) {
-        $dir = "post/" . $post_name;
-        $file = fopen($dir, "r");
-        $content = fread($file, filesize($dir));
-        $show = $content;
-        array_push($list, $show);
+        $dir = "post/" . $post_name;//The path of the foryou post
+        $file = fopen($dir, "r");//Opening the post file
+        $content = fread($file, filesize($dir));//Reading all the post texts
+        $show = $content; //Reassigning idk why
+        array_push($list, $show);//Pushing the final result to $list in order to use it later
     };
 };
-$count = sizeof($list);
+$count = sizeof($list);//The number of foryou posts
 
+//When finishing The for loop wuth found post $show should hold the value of the last post if not that means there no post
 if ($show == "") {
     $show = "There is nothing for you!";
 };
 
+//___________________________________________
+//Sorting all the names of the foryou post files in $posts array
+$posts3 = scandir("upload/");
+
+//The number of posts
+$post_number3 = sizeof($posts3);
+
+//Initialise the var that is going to hold the post value
+$show3 = "";
+
+$list3 = array();
+for ($x = 0; $x < $post_number3; $x++) {
+    $post_name3 = $posts3[$x];
+    if (strpos($post_name3, "foryou") !== false) {
+        $dir = "upload/" . $post_name3;
+        $file = fopen($dir, "r");
+        $content3 = fread($file, filesize($dir));
+        $show3 = $content3;
+        array_push($list3, $show3);
+    };
+};
+$count3 = sizeof($list3);
+
+// if ($show3 == "") {
+//     $show = "There is nothing for you!";
+// };
+
+//____________________________________________
 if (isset($_POST["search"])) {
     $_SESSION["search"] = $_POST["search"];
     header("Location: found.php");
@@ -54,7 +103,7 @@ global $list2, $count2;
 $list2 = array();
 for ($x = 0; $x < $user_post_number; $x++) {
     $user_post_name = $user_posts[$x];
-    if (str_contains($user_post_name, "post")) {
+    if (strpos($user_post_name, "post") !== false) {
         $dir2 = "post2/" . $user_post_name;
         $file2 = fopen($dir2, "r");
         $content2 = fread($file2, filesize($dir2));
@@ -101,10 +150,15 @@ $count2 = sizeof($list2);
             <br>
             <br>
             <?php
-            global $list, $count;
+            global $list, $count, $list3, $count3;
             $list =  array_reverse($list);
             for ($x = 0; $x < $count; $x++) {
                 echo filter_for_you($x, $list);
+            };
+
+            $list3 =  array_reverse($list3);
+            for ($x = 0; $x < $count3; $x++) {
+                echo filter_for_you2($x, $list3);
             };
             ?>
         </div>
