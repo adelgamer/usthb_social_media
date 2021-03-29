@@ -11,6 +11,12 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "section";
+
+// $servername = "sql111.epizy.com";
+// $username = "epiz_28232445";
+// $password = "Ork7j9Hj1GQq";
+// $database = "epiz_28232445_section";
+
 $mail = new PHPMailer();
 
 function db_select_all()
@@ -38,6 +44,7 @@ function db_select_spicific2($username2)
 {
     //This function returns all the records of MySql
     global $servername, $username, $password, $database;
+    // $username = "epiz_28232445";
     $username = "root";
     $link =  mysqli_connect($servername, $username, $password, $database);
     $sql = "SELECT * FROM users WHERE username='$username2';";
@@ -130,6 +137,7 @@ function send_gmail2($isHTML, $Subject, $Body, $to)
     $mail->Send();
 };
 
+
 function show_message($msg)
 {
     return "<b>" . $msg . "</b>";
@@ -145,7 +153,7 @@ function filter_for_you($x, $list)
     $today_date = date("Y-m-d");
 
     if (strpos($groups, $user_group) !== false and strtotime($post_date) >= strtotime($today_date)) {
-        $to_show = "<div class='borders'><b><u>" . $element[2] . "</u></b><p>" . str_replace("\n", "<br>", $element[3]) . "</p></div>";
+        $to_show = "<div class='borders'><b>Will happen in: <u>" . $element[2] . "</u></b><p>" . str_replace("\n", "<br>", $element[3]) . "</p></div>";
         return $to_show;
     };
 };
@@ -164,7 +172,7 @@ function filter_user_post($x, $list)
 function gmail_sent_to($x)
 {
     $post = scandir("post")[$x];
-    if (str_contains($post, "foryou")) {
+    if (strpos($post, "foryou") !== false) {
         $dir = "post//" . $post;
         $file = fopen($dir, "r");
         $post_content = fread($file, filesize($dir));
@@ -200,7 +208,7 @@ function post_content($x)
 function post_group($x)
 {
     $post = scandir("post")[$x];
-    if (str_contains($post, "foryou")) {
+    if (strpos($post, "foryou") !== false) {
         $post_name = scandir("post")[$x];
         $dir = "post//" . $post_name;
         $file = fopen($dir, "r");
@@ -260,4 +268,35 @@ function save_userpost()
     fwrite($file, $text);
     fclose($file);
     header("Location: home.php");
+};
+
+function upload()
+{
+    $target_dir = "upload/";
+    $target_file = $target_dir . basename($_SESSION["file"]["name"]);
+    if (!move_uploaded_file($_SESSION["file"]["tmp_name"], $target_file)) {
+        echo "Not successfull";
+    };
+    //_______________________________________
+    $all_posts = scandir("upload");
+    $last_post_name = end($all_posts);
+    $last_post_number = preg_replace('/[^0-9]/', '', $last_post_name);
+    $new_number = $last_post_number + 1;
+    $dir = "upload/foryou." . $new_number . ".txt";
+    $file = fopen($dir, "w");
+    $name = $_SESSION["first"] . " " . $_SESSION["last"] . ";\n";
+    $groups = $_SESSION["group1"] . "," . $_SESSION["group2"] . "," . $_SESSION["group3"] . "," . $_SESSION["group4"] . ";\n";
+    $date = $_SESSION["date"] . ";\n";
+    $content = $_SESSION["content"] . ";\n";
+    $path = $target_file . ";\n";
+    $text = $name . $groups . $date . $content . $path;
+    fwrite($file, $text);
+    fclose($file);
+};
+
+function filter_for_you2($x, $list)
+{
+    $element = explode(";", $list[$x]);
+    $to_show = "<div class='borders'><b>Posted in :<u>" . $element[2] . "</u></b><p>" . str_replace("\n", "<br>", $element[3]) . "</p><br><a href='view.php?id=$element[4]'>View</a></div>";
+    return $to_show;
 };

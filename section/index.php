@@ -8,14 +8,23 @@
     <title>USTHB</title>
     <link rel="stylesheet" href="index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="school.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <?php
+//Importing the file that contains all the functions
 include "var.php";
+
+
 $useremail = "";
 session_start();
+
+if (isset($_SESSION["is-logged"])){
+    unset($_SESSION["is-logged"]);
+};
+
 if (isset($_POST["gmail"]) and $_POST["password"]){
     $row = db_select_spicific($_POST["gmail"]);
     if ($row != ""){
@@ -31,11 +40,12 @@ if (isset($_POST["gmail"]) and $_POST["password"]){
             $_SESSION["group"] = $row[8];
             $_SESSION["birthday"] = $row[9];
             $_SESSION["gender"] = $row[10];
+            $_SESSION["is-logged"] = "true";
             header("Location: profile.php");
+            exit();
         }else{
             $body = "<h1>Someone is trying to access to your account !</h1>";
             echo "<b>Password is incorrect!</b>";
-            send_gmail2(true, "Security threat !", $body, $_POST["gmail"]);
         };
     }else{
         echo "<b>No user with this gmail!</b>";

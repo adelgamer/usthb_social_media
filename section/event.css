@@ -13,3 +13,13 @@ label{
     border-left: 2px solid rgb(0, 132, 255);
     border-right: 2px solid rgb(0, 132, 255);
 }
+
+.file{
+    margin-top: 100px;
+    border-top: 2px solid black;
+}
+
+#fileuploader{
+    margin-left: auto;
+    margin-right: auto;
+}

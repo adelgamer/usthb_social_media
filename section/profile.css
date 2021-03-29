@@ -46,4 +46,17 @@
 
 .pages a:active  {
     color: red;
-};
+}
+
+textarea{
+    resize: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(0, 132, 255);
+}
+
+#subject{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(0, 132, 255);
+}
